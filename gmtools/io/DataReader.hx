@@ -5,6 +5,7 @@ import haxe.io.BytesInput;
 import sys.io.File;
 
 typedef GameData = {
+    var fileBytes:Bytes;
     var chunks:Map<String, Bytes>;
     var gen8:Null<Bytes>;  // General info
     var strg:Null<Bytes>;  // Strings
@@ -16,6 +17,7 @@ typedef GameData = {
     var code:Null<Bytes>;  // Code
     var vari:Null<Bytes>;  // Variables
     var func:Null<Bytes>;  // Functions
+    var tpag:Null<Bytes>;  // Texture page items
     var txtr:Null<Bytes>;  // Textures
     var audo:Null<Bytes>;  // Audio
 }
@@ -69,6 +71,7 @@ class DataReader {
         }
 
         return {
+            fileBytes: bytes,
             chunks: chunks,
             gen8:   chunks["GEN8"],
             strg:   chunks["STRG"],
@@ -80,6 +83,7 @@ class DataReader {
             code:   chunks["CODE"],
             vari:   chunks["VARI"],
             func:   chunks["FUNC"],
+            tpag:   chunks["TPAG"],
             txtr:   chunks["TXTR"],
             audo:   chunks["AUDO"],
         };
